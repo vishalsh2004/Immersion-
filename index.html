@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+       background: url('https://media.istockphoto.com/id/1217507110/photo/hot-summer-or-heat-wave-background.jpg?s=612x612&w=0&k=20&c=JeNJBv26e0O1sTMPynNuxA9IjVmHC7fYa_qwh7XMLCA=') no-repeat center center fixed;
+      background-size: 1600px 750px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .converter {
+       background: rgba(93, 104, 105, 0.732);
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px 5px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="converter">
+  <h1>🌡️ Temperature Converter</h1>
+  <input type="number" id="tempInput" placeholder="Enter temperature">
+  <select id="conversionType">
+    <option value="CtoF">Celsius → Fahrenheit</option>
+    <option value="FtoC">Fahrenheit → Celsius</option>
+  </select>
+  <br>
+  <button onclick="convertTemp()">Convert</button>
+  <div id="result"></div>
+</div>
+
+<script>
+  function convertTemp() {
+    const temp = parseFloat(document.getElementById("tempInput").value);
+    const type = document.getElementById("conversionType").value;
+    let result = "";
+
+    if (isNaN(temp)) {
+      result = "Please enter a valid number.";
+    } else {
+      if (type === "CtoF") {
+        const f = (temp * 9/5) + 32;
+        result = `Result: ${f.toFixed(2)}°F`;
+      } else {
+        const c = (temp - 32) * 5/9;
+        result = `Result: ${c.toFixed(2)}°C`;
+      }
+    }
+
+    document.getElementById("result").textContent = result;
+  }
+</script>
+
+</body>
+</html>
